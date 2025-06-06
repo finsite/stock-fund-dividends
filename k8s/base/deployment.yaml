@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-fund-dividends
+  labels:
+    app: stock-fund-dividends
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-fund-dividends
+  template:
+    metadata:
+      labels:
+        app: stock-fund-dividends
+    spec:
+      containers:
+      - name: stock-fund-dividends
+        image: stock-fund-dividends:latest
+        ports:
+        - containerPort: 8080
