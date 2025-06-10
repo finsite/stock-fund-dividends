@@ -14,8 +14,7 @@ logger = setup_logger(__name__)
 
 
 def process(payloads: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """
-    Process a batch of dividend data messages.
+    """Process a batch of dividend data messages.
 
     Adds classification labels based on dividend yield and flags for recent changes.
 
@@ -28,6 +27,7 @@ def process(payloads: list[dict[str, Any]]) -> list[dict[str, Any]]:
     -------
     list[dict[str, Any]]
         Enriched messages with dividend metrics.
+
     """
     results: list[dict[str, Any]] = []
 
@@ -51,6 +51,8 @@ def process(payloads: list[dict[str, Any]]) -> list[dict[str, Any]]:
             results.append(item)
 
         except Exception as e:
-            logger.exception("❌ Failed to process dividend data for %s: %s", item.get("symbol", "unknown"), e)
+            logger.exception(
+                "❌ Failed to process dividend data for %s: %s", item.get("symbol", "unknown"), e
+            )
 
     return results
